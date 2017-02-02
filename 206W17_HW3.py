@@ -3,7 +3,7 @@ import re
 
 ## SI 206 - W17 - HW3
 ## COMMENT WITH:
-## Your section day/time:
+## Your section day/time: Friday 1-2 w/ Mauley
 ## Any names of people you worked with on this assignment:
 
 #####################
