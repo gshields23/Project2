@@ -19,6 +19,20 @@ import re
 # parse_counted_words('101 dalmations!') should return ('101', 'dalmations') ...
 
 ## Write code to define your parse_counted_words function here.
+def parse_counted_words(s):
+    x = r"(\d+)\s(\S[A-Za-z]+\b)"
+    matches = re.findall(x, s)
+    if len(matches)>= 1:
+        return matches[-1]
+    else:
+        return None
+
+
+    
+    return matches
+
+# s = "5 watermelons, 13 pineapples, and 1 papaya."
+# print(parse_counted_words(s))
 
 
 
@@ -28,6 +42,7 @@ import re
 ## We have provided a text file computer_paths.txt. It's not incredibly long -- you can scan through it, but do NOT hard code your answers! Each line contains 1 filesystem path.
 
 ## (a) Write Python code to determine how many of these paths identify FILES, not directories. Save that number in the variable file_paths_num.
+file = open('computer_paths.txt')
 
 ## (b) Write Python code to determine how many of these paths are FULL paths, not relative paths. Save that number in the variable full_paths_num.
 
