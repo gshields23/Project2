@@ -40,9 +40,13 @@ def parse_counted_words(s):
 ## PART 2: 200 points
 
 ## We have provided a text file computer_paths.txt. It's not incredibly long -- you can scan through it, but do NOT hard code your answers! Each line contains 1 filesystem path.
+file = open('computer_paths.txt', "r")
+data = file.read()
 
 ## (a) Write Python code to determine how many of these paths identify FILES, not directories. Save that number in the variable file_paths_num.
-file = open('computer_paths.txt')
+regex_a = r"\.+[A-Za-z]+"
+a = re.findall(regex_a, data)
+file_paths_num = len(a)
 
 ## (b) Write Python code to determine how many of these paths are FULL paths, not relative paths. Save that number in the variable full_paths_num.
 
