@@ -54,6 +54,9 @@ b = re.findall(regex_b, data)
 full_paths_num = len(b)
 
 ## (c) Write Python code to determine how many of these paths describe a Python file saved inside a folder called SI206. Save that number in the variable python_course_paths.
+regex_c = r"(SI206\/)(\w).+(.py)"
+c = re.findall(regex_c, data)
+python_course_paths = len(c)
 
 
 ## (d) Write Python code to determine how many of these paths describe a Microsoft file (a file that EITHER ends with .docx OR .xlsx, but nothing else counts) where the file name ends in a digit. Save that total in the variable microsoft_files_num.
