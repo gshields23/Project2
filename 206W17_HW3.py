@@ -3,8 +3,8 @@ import re
 
 ## SI 206 - W17 - HW3
 ## COMMENT WITH:
-## Your section day/time: Friday 1-2 w/ Mauley
-## Any names of people you worked with on this assignment:
+## Your section day/time: Friday 1-2 w/ Mauli
+## Any names of people you worked with on this assignment: Taylor Lundeen & Mauli! 
 
 #####################
 
@@ -60,7 +60,9 @@ python_course_paths = len(c)
 
 
 ## (d) Write Python code to determine how many of these paths describe a Microsoft file (a file that EITHER ends with .docx OR .xlsx, but nothing else counts) where the file name ends in a digit. Save that total in the variable microsoft_files_num.
-
+regex_d = r"[0-9](.docx|.xlsx)"
+d = re.findall(regex_d, data)
+microsoft_files_num = len(d)
 
 
 
