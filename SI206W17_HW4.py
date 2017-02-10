@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup
 
 ## SI 206 - W17 - HW4
 ## COMMENT WITH:
-## Your section day/time: Friday 1-2
-## Any names of people you worked with on this assignment: Lauren Sigurdson
+## Your section day/time: Friday 1-2 with Mauli
+## Any names of people you worked with on this assignment: Lauren Sigurdson, Tahmeed
 
 #####################
 
@@ -14,7 +14,7 @@ from bs4 import BeautifulSoup
 
 ## Write the Python code to do so here.
 
-cache_filename = "html_data_from_nytimes_data.html"
+cache_filename = "nytimes_data.html"
 try:
 	f = open(cache_filename, 'r')
 	text_data_from_site = f.read()
@@ -29,12 +29,35 @@ except:
 
 soup = BeautifulSoup(text_data_from_site, 'html.parser')
 
+#print(soup)
 
 
 #####################
 
 ## PART 2 (200 points)
-## Write code to get the first 10 headlines from the New York Times, based on the data you saved in the file in Part 1, and save those strings in a list called nytimes_headlines. 
+## Write code to get the first 10 headlines from the New York Times, based on the data you saved in the file in Part 1, and save those strings in a list called nytimes_headlines.
+
+nytimes_headlines = []
+# headline = soup.findAll('h2', {'class': 'story-heading'})
+
+for story_heading in soup.find_all(class_="story-heading"): 
+    if story_heading.a: 
+        x = story_heading.a.text.replace("\n", " ").strip()
+        nytimes_headlines.append(x)
+    else: 
+        y = story_heading.contents[0].strip()
+        nytimes_headlines.append(y)
+
+# for num in range(10):
+# 	nytimes_headlines.append(headline[num])
+
+
+# print(nytimes_headlines[0:9], '\n')
+
+print(nytimes_headlines[0:10])
+
+
+
 
 ## Note that you will almost certainly need to do some investigation on the http://nytimes.com website to do this correctly, even after saving the file in Part 1.
 
@@ -78,10 +101,23 @@ soup = BeautifulSoup(text_data_from_site, 'html.parser')
 
 response = requests.get("https://www.si.umich.edu/directory?field_person_firstname_value=&field_person_lastname_value=&rid=All")
 htmldoc = response.text
+umsi_titles = {}
 
 soup = BeautifulSoup(htmldoc,"html.parser")
 people = soup.find_all("div",{"class":"views-row"})
-umsi_titles = {}
+for p in people:
+	name = p.find("div", {"property": "dc:title"})
+	#print(name.h2.text)
+	position = p.find("div", {"class":"field-name-field-person-titles"})
+	#print(position.text)
+
+	umsi_titles[name.text] = position.text
+
+print(umsi_titles)
+
+
+#dictionary with key as a name, and value as their position
+
 
 ## It may be helpful to translate the following from English to code:
 
@@ -89,7 +125,6 @@ umsi_titles = {}
 ## Find the container that holds the name that belongs to that person (HINT: look for something unique, like a property element...)
 ## Find the container that holds the title that belongs to that person (HINT: a class name)
 ## Grab the text of each of those elements and put them in the dictionary umsi_titles properly
-
 
 
 
