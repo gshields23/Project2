@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 ## SI 206 - W17 - HW4
 ## COMMENT WITH:
 ## Your section day/time: Friday 1-2 with Mauli
-## Any names of people you worked with on this assignment: Lauren Sigurdson, Tahmeed
+## Any names of people you worked with on this assignment: Lauren Sigurdson and Tahmeed
 
 #####################
 
@@ -116,7 +116,6 @@ for p in people:
 print(umsi_titles)
 
 
-#dictionary with key as a name, and value as their position
 
 
 ## It may be helpful to translate the following from English to code:
