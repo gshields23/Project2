@@ -7,7 +7,7 @@ import gstwitterinfo
 ## SI 206 - W17 - HW5
 ## COMMENT WITH:
 ## Your section day/time: Friday 1-2
-## Any names of people you worked with on this assignment: Lauren Sigurdson
+## Any names of people you worked with on this assignment: Lauren Sigurdson, Sanika Babtiwale, Daniel S.
 
 ######## 500 points total ########
 
@@ -58,25 +58,35 @@ except:
 
 def get_twitter_data(phrase):
 	unique_identifier = "twitter_{}".format(phrase)
+	print(unique_identifier)
+	print(phrase)
 	if unique_identifier in CACHE_DICTION:
 		print('using cached data for', phrase)
-		twitter_results = CACHE_DICTION[unique_identifier]
+		desired_tweets = CACHE_DICTION[unique_identifier]
 	else:
 		print('getting data from internet for', phrase)
-		twitter_results = api.user_timeline(phrase)
-		CACHE_DICTION[unique_identifier] = twitter_results
+		twitter_results = api.search(q = phrase)
+		desired_tweets = twitter_results['statuses']
+		CACHE_DICTION[unique_identifier] = desired_tweets
 		f=open(CACHE_FNAME, 'w')
 		f.write(json.dumps(CACHE_DICTION))
+		f.close()
 
-twitter_results = api.search(q = input("Enter a phrase"))
-print(type(twitter_results))
-print(twitter_results)
+		#print(twitter_results)
 
-print(twitter_results[])
+	tweet_texts = []
+	for tweet in desired_tweets:
+		tweet_texts.append("TEXT: " + tweet['text'])
+		tweet_texts.append("CREATED AT: " + tweet['created_at'])
+		tweet_texts.append("\n")
+		
+	return(tweet_texts[:9])
 
 
-#twitter_results is a dict
-#tweet is a word
+#twitter_results = api.search(q = input("Enter a phrase"))
+
+
+
 
 
 
@@ -86,8 +96,6 @@ print(twitter_results[])
 ## 2. Write a function to get twitter data that works with the caching pattern, so it either gets new data or caches data, depending upon what the input to search for is. You can model this off the class exercise from Tuesday.
 ## 3. Invoke your function, save the return value in a variable, and explore the data you got back!
 ## 4. With what you learn from the data -- e.g. how exactly to find the text of each tweet in the big nested structure -- write code to print out content from 3 tweets, as shown above.
-
-
 
 
 
