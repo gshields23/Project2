@@ -2,6 +2,7 @@ import unittest
 import tweepy
 import requests
 import json
+import gstwitterinfo
 
 ## SI 206 - W17 - HW5
 ## COMMENT WITH:
@@ -30,15 +31,15 @@ import json
 
 ## We've provided some starter code below, like what is in the class tweepy examples.
 
-## **** For 50 points of extra credit, create another file called twitter_info.py that contains your consumer_key, consumer_secret, access_token, and access_token_secret, import that file here, and use the process we discuss in class to make that information secure! Do NOT add and commit that file to a public GitHub repository.
+## **** For 50 points of extra credit, create another file called twitter_info.py that c.≤≤≤≤.,.,.,ontains your consumer_key, consumer_secret, access_token, and access_token_secret, import that file here, and use the process we discuss in class to make that information secure! Do NOT add and commit that file to a public GitHub repository.
 
 ## **** If you choose not to do that, we strongly advise using authentication information for an 'extra' Twitter account you make just for this class, and not your personal account, because it's not ideal to share your authentication information for a real account that you use frequently.
 
 ## Get your secret values to authenticate to Twitter. You may replace each of these with variables rather than filling in the empty strings if you choose to do the secure way for 50 EC points
-consumer_key = "ZlTynFHxBEEd8RjYmpYVECgTw" 
-consumer_secret = "HsUcAi6kaPXzq8WXhWh4lETqJP650pDTMUk8siPLBvu3ubLrCq"
-access_token = "224083622-XLfPMD7aTqkdXdWe7Kg7I0ZQsu0I1jgyUwdjdwDo"
-access_token_secret = "eYu4kXGMvw2urjh2njYNeQAJPi2QXjOefRJdfSMxvcJCT"
+consumer_key = gstwitterinfo.consumer_key
+consumer_secret = gstwitterinfo.consumer_secret
+access_token = gstwitterinfo.access_token
+access_token_secret = gstwitterinfo.access_token_secret
 ## Set up your authentication to Twitter
 auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
@@ -56,7 +57,6 @@ except:
 
 
 def get_twitter_data(phrase):
-	twitter_results = api.search(q, input = "Enter a phrase")
 	unique_identifier = "twitter_{}".format(phrase)
 	if unique_identifier in CACHE_DICTION:
 		print('using cached data for', phrase)
@@ -68,11 +68,17 @@ def get_twitter_data(phrase):
 		f=open(CACHE_FNAME, 'w')
 		f.write(json.dumps(CACHE_DICTION))
 
-# tweet_texts = []
-# twitter_results = api.search()
+twitter_results = api.search(q = input("Enter a phrase"))
+print(type(twitter_results))
+print(twitter_results)
 
-# for tweet in twitter_results:
-# 	.append
+print(twitter_results[])
+
+
+#twitter_results is a dict
+#tweet is a word
+
+
 
 
 #### Recommended order of tasks: ####
