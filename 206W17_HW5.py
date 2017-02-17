@@ -81,8 +81,6 @@ def get_twitter_data(phrase):
 	return(tweet_texts[:9])
 
 
-#twitter_results = api.search(q = input("Enter a phrase"))
-
 user_says = input("Enter a phrase")
 tweets_from_user = get_twitter_data(user_says)
 for tweet in tweets_from_user:
