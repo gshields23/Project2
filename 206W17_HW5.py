@@ -58,8 +58,6 @@ except:
 
 def get_twitter_data(phrase):
 	unique_identifier = "twitter_{}".format(phrase)
-	print(unique_identifier)
-	print(phrase)
 	if unique_identifier in CACHE_DICTION:
 		print('using cached data for', phrase)
 		desired_tweets = CACHE_DICTION[unique_identifier]
@@ -85,7 +83,10 @@ def get_twitter_data(phrase):
 
 #twitter_results = api.search(q = input("Enter a phrase"))
 
-
+user_says = input("Enter a phrase")
+tweets_from_user = get_twitter_data(user_says)
+for tweet in tweets_from_user:
+	print(tweet)
 
 
 
