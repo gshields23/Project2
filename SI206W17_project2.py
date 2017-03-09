@@ -1,7 +1,7 @@
 ## SI 206 W17 - Project 2 
 
 ## COMMENT HERE WITH:
-## Your name:
+## Your name: Gillian Shields
 ## Anyone you worked with on this project:
 
 ## Below we have provided import statements, comments to separate out the parts of the project, instructions/hints/examples, and at the end, tests. See the PDF of instructions for more detail. 
@@ -16,6 +16,7 @@ import requests
 import tweepy
 import twitter_info # Requires you to have a twitter_info file in this directory
 from bs4 import BeautifulSoup
+import re
 
 ## Tweepy authentication setup
 ## Fill these in in the twitter_info.py file
@@ -33,6 +34,13 @@ api = tweepy.API(auth, parser=tweepy.parsers.JSONParser())
 
 ## Write the code to begin your caching pattern setup here.
 
+CACHE_FNAME = "206project2_caching.json"
+try:
+	cache_file_obj = open(CACHE_FNAME,'r')
+	cache_contents = cache_file_obj.read()
+	CACHE_DICTION = json.loads(cache_contents)
+except:
+	CACHE_DICTION = {}
 
 
 
@@ -45,8 +53,12 @@ api = tweepy.API(auth, parser=tweepy.parsers.JSONParser())
 ## find_urls("I love looking at websites like http://etsy.com and http://instagram.com and stuff") should return ["http://etsy.com","http://instagram.com"]
 ## find_urls("the internet is awesome #worldwideweb") should return [], empty list
 
+def find_urls(s):
+	regex = r"https?:\/\/[A-Za-z0-9]{2,}(?:\.+[a-zA-Z0-9]{2,})+"
+	list_urls = re.findall(regex, s)
 
 
+	return list_urls
 
 
 
@@ -62,6 +74,7 @@ api = tweepy.API(auth, parser=tweepy.parsers.JSONParser())
 ## End with this page: https://www.si.umich.edu/directory?field_person_firstname_value=&field_person_lastname_value=&rid=All&page=11 
 
 
+def get_umsi_data:
 
 
 
